@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VisitorsIndexRouteImport } from './routes/visitors/index'
+import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as ChatbotIndexRouteImport } from './routes/chatbot/index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
 import { Route as DashboardFormRouteImport } from './routes/dashboard/form'
 import { Route as DashboardFaqsRouteImport } from './routes/dashboard/faqs'
@@ -30,10 +33,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VisitorsIndexRoute = VisitorsIndexRouteImport.update({
+  id: '/visitors/',
+  path: '/visitors/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRouteRoute,
+} as any)
+const ChatbotIndexRoute = ChatbotIndexRouteImport.update({
+  id: '/chatbot/',
+  path: '/chatbot/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   id: '/settings',
@@ -81,7 +99,10 @@ export interface FileRoutesByFullPath {
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/chatbot': typeof ChatbotIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/visitors': typeof VisitorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -92,7 +113,10 @@ export interface FileRoutesByTo {
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/chatbot': typeof ChatbotIndexRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/visitors': typeof VisitorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -105,7 +129,10 @@ export interface FileRoutesById {
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
+  '/chatbot/': typeof ChatbotIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/visitors/': typeof VisitorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -119,7 +146,10 @@ export interface FileRouteTypes {
     | '/dashboard/faqs'
     | '/dashboard/form'
     | '/dashboard/settings'
+    | '/chatbot'
     | '/dashboard/'
+    | '/projects'
+    | '/visitors'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -130,7 +160,10 @@ export interface FileRouteTypes {
     | '/dashboard/faqs'
     | '/dashboard/form'
     | '/dashboard/settings'
+    | '/chatbot'
     | '/dashboard'
+    | '/projects'
+    | '/visitors'
   id:
     | '__root__'
     | '/'
@@ -142,7 +175,10 @@ export interface FileRouteTypes {
     | '/dashboard/faqs'
     | '/dashboard/form'
     | '/dashboard/settings'
+    | '/chatbot/'
     | '/dashboard/'
+    | '/projects/'
+    | '/visitors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -151,6 +187,9 @@ export interface RootRouteChildren {
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthSignInRoute: typeof AuthSignInRoute
   AuthSignUpRoute: typeof AuthSignUpRoute
+  ChatbotIndexRoute: typeof ChatbotIndexRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
+  VisitorsIndexRoute: typeof VisitorsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -169,12 +208,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/visitors/': {
+      id: '/visitors/'
+      path: '/visitors'
+      fullPath: '/visitors'
+      preLoaderRoute: typeof VisitorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard/': {
       id: '/dashboard/'
       path: '/'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
+    }
+    '/chatbot/': {
+      id: '/chatbot/'
+      path: '/chatbot'
+      fullPath: '/chatbot'
+      preLoaderRoute: typeof ChatbotIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/dashboard/settings': {
       id: '/dashboard/settings'
@@ -254,6 +314,9 @@ const rootRouteChildren: RootRouteChildren = {
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthSignInRoute: AuthSignInRoute,
   AuthSignUpRoute: AuthSignUpRoute,
+  ChatbotIndexRoute: ChatbotIndexRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
+  VisitorsIndexRoute: VisitorsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
