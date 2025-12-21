@@ -1,5 +1,4 @@
-import { stat } from "fs";
-import React, { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 const AnimatedRect = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -8,7 +7,7 @@ const AnimatedRect = () => {
   useEffect(() => {
     if (isHovered) {
       const interval = setInterval(() => {
-        setState(state);
+        setState((prev) => prev + 1);
         if (state === 5) {
           setState(1);
         } else {
@@ -20,7 +19,8 @@ const AnimatedRect = () => {
   }, [isHovered, state]);
 
   return (
-    <div
+    <button
+      type="button"
       className="w-full h-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -37,8 +37,9 @@ const AnimatedRect = () => {
           transform: "translate3d(0px, 0px, 0px)",
         }}
       >
+        <title>Animated Rectangle for Project Card</title>
         <defs>
-          <clipPath id="__lottie_element_373">
+          <clipPath id={useId()}>
             <rect width="754" height="344" x="0" y="0"></rect>
           </clipPath>
         </defs>
@@ -455,7 +456,7 @@ const AnimatedRect = () => {
           )}
         </g>
       </svg>
-    </div>
+    </button>
   );
 };
 

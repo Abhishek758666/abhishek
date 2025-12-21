@@ -1,0 +1,26 @@
+[
+	{
+		"link": "https://bishraam.com/",
+		"image": "/bishraam.png",
+		"title": "Bishraam",
+		"description": "Hotel and trekking booking site with 300+ registered hotels in the country."
+	},
+	{
+		"link": "https://www.yamburishop.co.za/",
+		"image": "/yam.png",
+		"title": "Yamburi",
+		"description": "Ecommerce based on South Africa."
+	},
+	{
+		"link": "https://www.esquire.co.za/",
+		"image": "/esquire.png",
+		"title": "Esquire",
+		"description": "Ecommerce based on South Africa."
+	},
+	{
+		"link": "https://www.3hc.com.np/",
+		"image": "/3hc.png",
+		"title": "3HC",
+		"description": "High Himalayan Hydro Construction - private construction company mostly focused on hydro power."
+	}
+]
