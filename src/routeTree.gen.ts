@@ -19,9 +19,12 @@ import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settin
 import { Route as DashboardFormRouteImport } from './routes/dashboard/form'
 import { Route as DashboardFaqsRouteImport } from './routes/dashboard/faqs'
 import { Route as DashboardDataTableRouteImport } from './routes/dashboard/data-table'
+import { Route as ApiAiRouteImport } from './routes/api/ai'
 import { Route as AuthSignUpRouteImport } from './routes/_auth/sign-up'
 import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
 import { Route as AuthForgotPasswordRouteImport } from './routes/_auth/forgot-password'
+import { Route as DashboardSubjectsIndexRouteImport } from './routes/dashboard/subjects/index'
+import { Route as DashboardSubjectsLessonIndexRouteImport } from './routes/dashboard/subjects/lesson/index'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
@@ -73,6 +76,11 @@ const DashboardDataTableRoute = DashboardDataTableRouteImport.update({
   path: '/data-table',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const ApiAiRoute = ApiAiRouteImport.update({
+  id: '/api/ai',
+  path: '/api/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthSignUpRoute = AuthSignUpRouteImport.update({
   id: '/_auth/sign-up',
   path: '/sign-up',
@@ -88,6 +96,17 @@ const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
   path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardSubjectsIndexRoute = DashboardSubjectsIndexRouteImport.update({
+  id: '/subjects/',
+  path: '/subjects/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardSubjectsLessonIndexRoute =
+  DashboardSubjectsLessonIndexRouteImport.update({
+    id: '/subjects/lesson/',
+    path: '/subjects/lesson/',
+    getParentRoute: () => DashboardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
+  '/api/ai': typeof ApiAiRoute
   '/dashboard/data-table': typeof DashboardDataTableRoute
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
@@ -103,12 +123,15 @@ export interface FileRoutesByFullPath {
   '/dashboard/': typeof DashboardIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/visitors': typeof VisitorsIndexRoute
+  '/dashboard/subjects': typeof DashboardSubjectsIndexRoute
+  '/dashboard/subjects/lesson': typeof DashboardSubjectsLessonIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
+  '/api/ai': typeof ApiAiRoute
   '/dashboard/data-table': typeof DashboardDataTableRoute
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
@@ -117,6 +140,8 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/visitors': typeof VisitorsIndexRoute
+  '/dashboard/subjects': typeof DashboardSubjectsIndexRoute
+  '/dashboard/subjects/lesson': typeof DashboardSubjectsLessonIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -125,6 +150,7 @@ export interface FileRoutesById {
   '/_auth/forgot-password': typeof AuthForgotPasswordRoute
   '/_auth/sign-in': typeof AuthSignInRoute
   '/_auth/sign-up': typeof AuthSignUpRoute
+  '/api/ai': typeof ApiAiRoute
   '/dashboard/data-table': typeof DashboardDataTableRoute
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
@@ -133,6 +159,8 @@ export interface FileRoutesById {
   '/dashboard/': typeof DashboardIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/visitors/': typeof VisitorsIndexRoute
+  '/dashboard/subjects/': typeof DashboardSubjectsIndexRoute
+  '/dashboard/subjects/lesson/': typeof DashboardSubjectsLessonIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -142,6 +170,7 @@ export interface FileRouteTypes {
     | '/forgot-password'
     | '/sign-in'
     | '/sign-up'
+    | '/api/ai'
     | '/dashboard/data-table'
     | '/dashboard/faqs'
     | '/dashboard/form'
@@ -150,12 +179,15 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/projects'
     | '/visitors'
+    | '/dashboard/subjects'
+    | '/dashboard/subjects/lesson'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/forgot-password'
     | '/sign-in'
     | '/sign-up'
+    | '/api/ai'
     | '/dashboard/data-table'
     | '/dashboard/faqs'
     | '/dashboard/form'
@@ -164,6 +196,8 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/projects'
     | '/visitors'
+    | '/dashboard/subjects'
+    | '/dashboard/subjects/lesson'
   id:
     | '__root__'
     | '/'
@@ -171,6 +205,7 @@ export interface FileRouteTypes {
     | '/_auth/forgot-password'
     | '/_auth/sign-in'
     | '/_auth/sign-up'
+    | '/api/ai'
     | '/dashboard/data-table'
     | '/dashboard/faqs'
     | '/dashboard/form'
@@ -179,6 +214,8 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/projects/'
     | '/visitors/'
+    | '/dashboard/subjects/'
+    | '/dashboard/subjects/lesson/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -187,6 +224,7 @@ export interface RootRouteChildren {
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthSignInRoute: typeof AuthSignInRoute
   AuthSignUpRoute: typeof AuthSignUpRoute
+  ApiAiRoute: typeof ApiAiRoute
   ChatbotIndexRoute: typeof ChatbotIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
   VisitorsIndexRoute: typeof VisitorsIndexRoute
@@ -264,6 +302,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDataTableRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/api/ai': {
+      id: '/api/ai'
+      path: '/api/ai'
+      fullPath: '/api/ai'
+      preLoaderRoute: typeof ApiAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_auth/sign-up': {
       id: '/_auth/sign-up'
       path: '/sign-up'
@@ -285,6 +330,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/subjects/': {
+      id: '/dashboard/subjects/'
+      path: '/subjects'
+      fullPath: '/dashboard/subjects'
+      preLoaderRoute: typeof DashboardSubjectsIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/subjects/lesson/': {
+      id: '/dashboard/subjects/lesson/'
+      path: '/subjects/lesson'
+      fullPath: '/dashboard/subjects/lesson'
+      preLoaderRoute: typeof DashboardSubjectsLessonIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
   }
 }
 
@@ -294,6 +353,8 @@ interface DashboardRouteRouteChildren {
   DashboardFormRoute: typeof DashboardFormRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardSubjectsIndexRoute: typeof DashboardSubjectsIndexRoute
+  DashboardSubjectsLessonIndexRoute: typeof DashboardSubjectsLessonIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
@@ -302,6 +363,8 @@ const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
   DashboardFormRoute: DashboardFormRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardSubjectsIndexRoute: DashboardSubjectsIndexRoute,
+  DashboardSubjectsLessonIndexRoute: DashboardSubjectsLessonIndexRoute,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
@@ -314,6 +377,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthSignInRoute: AuthSignInRoute,
   AuthSignUpRoute: AuthSignUpRoute,
+  ApiAiRoute: ApiAiRoute,
   ChatbotIndexRoute: ChatbotIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
   VisitorsIndexRoute: VisitorsIndexRoute,
