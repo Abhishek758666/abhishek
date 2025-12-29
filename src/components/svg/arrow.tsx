@@ -1,5 +1,4 @@
-"use client";
-import React from "react";
+import { useId } from "react";
 
 const ArrowSvg = () => {
   return (
@@ -10,8 +9,9 @@ const ArrowSvg = () => {
       height="82"
       preserveAspectRatio="xMidYMid slice"
     >
+      <title>Arrow</title>
       <defs>
-        <clipPath id="__lottie_element_294">
+        <clipPath id={useId()}>
           <rect width="70" height="82" x="0" y="0"></rect>
         </clipPath>
       </defs>

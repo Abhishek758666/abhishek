@@ -1,24 +1,13 @@
-import { createServerFn } from "@tanstack/react-start";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import RectangleBackground from "@/components/background/rectangle-background";
 import { Button } from "@/components/ui/button";
+import { Route } from "@/routes/visitors";
 import Canvas from "./components/canvas";
 import VisitorCard from "./components/visitor-card";
 
-export const getNotes = createServerFn().handler(async () => {
-  return [
-    {
-      id: "1",
-      name: "John Doe",
-      message: "Hello, world!",
-      image: "https://via.placeholder.com/150",
-    },
-  ];
-});
-
-const VisitorsPage = async () => {
-  const notes = await getNotes();
+const VisitorsPage = () => {
+  const notes = Route.useLoaderData();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -38,7 +27,7 @@ const VisitorsPage = async () => {
         <div className="w-full h-[80vh] relative z-20 bg-transparent">
           <RectangleBackground />
           {notes?.length ? (
-            notes?.map((note, i) => {
+            notes?.map((note, i: number) => {
               const top = `${Math.floor(Math.random() * 70 + 5)}%`;
               const left = `${Math.floor(Math.random() * 70 + 5)}%`;
               const rotate = `${Math.floor(Math.random() * 40 - 20)}deg`;

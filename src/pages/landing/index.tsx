@@ -2,8 +2,11 @@ import { ClientOnly } from "@tanstack/react-router";
 import LayoutAside from "./components/aside";
 import FloatingDoc from "./components/floating-doc";
 import HomeContent from "./components/home";
+import { Route } from "@/routes";
 
 const LandingPage = () => {
+  const stg = Route.useLoaderData();
+  console.log(stg);
   return (
     <ClientOnly>
       <div className="fixed top-0 left-0 inset-0 bg-size-[30px_30px] bg-[radial-gradient(#EAEAF1_2px,transparent_2px)] dark:bg-[radial-gradient(#EAEAF1_2px,transparent_2px)] animate-[background-position_2s_linear_infinite]" />

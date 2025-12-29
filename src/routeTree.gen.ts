@@ -19,6 +19,7 @@ import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settin
 import { Route as DashboardFormRouteImport } from './routes/dashboard/form'
 import { Route as DashboardFaqsRouteImport } from './routes/dashboard/faqs'
 import { Route as DashboardDataTableRouteImport } from './routes/dashboard/data-table'
+import { Route as ApiDemoRouteImport } from './routes/api/demo'
 import { Route as ApiAiRouteImport } from './routes/api/ai'
 import { Route as AuthSignUpRouteImport } from './routes/_auth/sign-up'
 import { Route as AuthSignInRouteImport } from './routes/_auth/sign-in'
@@ -76,6 +77,11 @@ const DashboardDataTableRoute = DashboardDataTableRouteImport.update({
   path: '/data-table',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
+const ApiDemoRoute = ApiDemoRouteImport.update({
+  id: '/api/demo',
+  path: '/api/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAiRoute = ApiAiRouteImport.update({
   id: '/api/ai',
   path: '/api/ai',
@@ -115,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
   '/api/ai': typeof ApiAiRoute
+  '/api/demo': typeof ApiDemoRoute
   '/dashboard/data-table': typeof DashboardDataTableRoute
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/sign-in': typeof AuthSignInRoute
   '/sign-up': typeof AuthSignUpRoute
   '/api/ai': typeof ApiAiRoute
+  '/api/demo': typeof ApiDemoRoute
   '/dashboard/data-table': typeof DashboardDataTableRoute
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
@@ -151,6 +159,7 @@ export interface FileRoutesById {
   '/_auth/sign-in': typeof AuthSignInRoute
   '/_auth/sign-up': typeof AuthSignUpRoute
   '/api/ai': typeof ApiAiRoute
+  '/api/demo': typeof ApiDemoRoute
   '/dashboard/data-table': typeof DashboardDataTableRoute
   '/dashboard/faqs': typeof DashboardFaqsRoute
   '/dashboard/form': typeof DashboardFormRoute
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/api/ai'
+    | '/api/demo'
     | '/dashboard/data-table'
     | '/dashboard/faqs'
     | '/dashboard/form'
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/sign-up'
     | '/api/ai'
+    | '/api/demo'
     | '/dashboard/data-table'
     | '/dashboard/faqs'
     | '/dashboard/form'
@@ -206,6 +217,7 @@ export interface FileRouteTypes {
     | '/_auth/sign-in'
     | '/_auth/sign-up'
     | '/api/ai'
+    | '/api/demo'
     | '/dashboard/data-table'
     | '/dashboard/faqs'
     | '/dashboard/form'
@@ -225,6 +237,7 @@ export interface RootRouteChildren {
   AuthSignInRoute: typeof AuthSignInRoute
   AuthSignUpRoute: typeof AuthSignUpRoute
   ApiAiRoute: typeof ApiAiRoute
+  ApiDemoRoute: typeof ApiDemoRoute
   ChatbotIndexRoute: typeof ChatbotIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
   VisitorsIndexRoute: typeof VisitorsIndexRoute
@@ -302,6 +315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDataTableRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
+    '/api/demo': {
+      id: '/api/demo'
+      path: '/api/demo'
+      fullPath: '/api/demo'
+      preLoaderRoute: typeof ApiDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/ai': {
       id: '/api/ai'
       path: '/api/ai'
@@ -378,6 +398,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthSignInRoute: AuthSignInRoute,
   AuthSignUpRoute: AuthSignUpRoute,
   ApiAiRoute: ApiAiRoute,
+  ApiDemoRoute: ApiDemoRoute,
   ChatbotIndexRoute: ChatbotIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
   VisitorsIndexRoute: VisitorsIndexRoute,

@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 const ThreeLines = () => {
   const [line, setLine] = useState(2);
@@ -28,8 +27,9 @@ const ThreeLines = () => {
           transform: "translate3d(0px, 0px, 0px)",
         }}
       >
+        <title>3 Lines</title>
         <defs>
-          <clipPath id="__lottie_element_50">
+          <clipPath id={useId()}>
             <rect width="32" height="43" x="0" y="0"></rect>
           </clipPath>
         </defs>

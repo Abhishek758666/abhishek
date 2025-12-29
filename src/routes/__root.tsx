@@ -8,7 +8,6 @@ import {
   useLocation,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import FloatingDoc from "@/pages/landing/components/floating-doc";
 import TanStackQueryDevtools from "../integrations/tanstack-query/devtools";
 import appCss from "../styles.css?url";
@@ -64,13 +63,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ThemeProvider>
+        <>
           {isPortfolioPage ? (
             <LandingLayout>{children}</LandingLayout>
           ) : (
             children
           )}
-        </ThemeProvider>
+        </>
         <TanStackDevtools
           config={{
             position: "bottom-right",
